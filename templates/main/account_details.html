@@ -1,0 +1,128 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+{% load static %}
+
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <center><h4 class="alert-heading">Votre solde {{account_type}}</h4></center>
+    <p><center> <h1> + {{solde}} €</h1> </center></p>
+ 
+  </div>
+
+
+  <div class="col-12">
+    <div class="card recent-sales ">
+
+      <div class="card-body">
+        <h5 class="card-title">Historique des transactions</h5>
+
+        <table class="table  ">
+
+          <tbody>
+            {% if transactions %}
+            {% for transaction in transactions %}
+            <tr>
+                <th scope="row"><img src='{% static "img/flux.png" %}'></th>
+                <td>{{ transaction.transaction_type }} compte {{transaction.to}}
+                    <span class="badge {% if transaction.status == 'confirmé' %}bg-success{% elif transaction.status == 'en cours' %}bg-warning{% else %}bg-danger{% endif %}">
+                        {{ transaction.status }}
+                    </span>
+                </td>
+                <td>{{ transaction.amount }} €</td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            Aucune transaction effectué
+            {% endif %}
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+</div><!-- End Recent Sales -->
+
+<div class="card">
+    <div class="card-body">
+      <!-- Vertical Form -->
+      <form class="row g-3" style="margin-top:10px;" action="{% url "VirementInterne" %}" method="post">
+        {% csrf_token %}
+        
+        <input name="source" value="{{account_type}}" hidden>
+
+        
+
+      <div class="col-12">
+        <label for="beneficiaire" class="form-label">Transferer vers : </label>
+        <select class="form-select" required id="beneficiaire" name="beneficiaire" aria-label="Select a beneficiary">
+            <option value="" selected >Choisissez un compte </option>
+            {% for account in account_list %}
+                <option value="{{ account.account_type }}">{{ account.account_type }}</option>
+            {% endfor %}
+        </select>
+    </div>
+        <div class="col-12">
+          <label for="inputEmail4" class="form-label">Montant</label>
+          <input type="text" class="form-control" id="inputEmail4" name="montant" required>
+         
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Valider</button>
+          <button type="reset" class="btn btn-secondary">Réinitialiser</button>
+        </div>
+      </form><!-- Vertical Form -->
+
+    </div>
+  </div>
+
+{% if account_type == "courant" %}
+<div class="d-grid gap-2 mt-3">
+    <a class="btn btn-primary" type="button" href="{% url "send" %}">Faire des virements</a>
+  </div>
+{% endif %}
+
+
+
+<nav id="header" class="header fixed-bottom d-flex align-items-center">
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url "index" %}" class="logo d-flex align-items-center">
+          <img src="{% static "img/historiqueb.png" %}" alt="Historique">
+      </a>
+      <div class="divider-vertical"></div>
+  </div>
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url "send" %}" class="logo d-flex align-items-center">
+          <img src="{% static "img/send.png" %}" alt="Envoyer">
+      </a>
+      <div class="divider-vertical"></div>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url "carte" %}" class="logo d-flex align-items-center">
+          <img src="{% static "img/carteb.png" %}" alt="Carte">
+      </a>
+      <div class="divider-vertical"></div>
+  </div>
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="{% url "rib" %}" class="logo d-flex align-items-center">
+            <img src="{% static "img/ribb.png" %}" alt="RIB">
+        </a>
+        <div class="divider-vertical"></div>
+    </div>
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="{% url "autre" %}" class="logo d-flex align-items-center">
+            <img src="{% static "img/autreb.png" %}" alt="Autre">
+        </a>
+        <div class="divider-vertical"></div>
+    </div>
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="{% url "settings" %}" class="logo d-flex align-items-center">
+            <img src="{% static "img/loanb.png" %}" alt="Dépôt">
+        </a>
+        <div class="divider-vertical"></div>
+    </div>
+</nav>
+
+
+{% endblock content %}

@@ -1,0 +1,52 @@
+{% extends "auth/base_auth.html" %}
+{% block content %}
+<div class="pt-4 pb-2">
+    <h5 class="card-title text-center pb-0 fs-4">De quelles resources disposez-vous ?</h5>
+    <p class="text-center small">Aucune différence de traitement ne sera faite par CI BANK en fonction de vos revenus.</p>
+  </div>
+
+  <form action="{% url 'revenu' %}" method="post" class="row g-3 needs-validation" novalidate>
+    {% csrf_token %}
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="revenu" id="gridRadios1" value="-500" checked>
+        <label class="form-check-label" for="gridRadios1">
+          - de 500€
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="revenu" id="gridRadios2" value="500-1000">
+        <label class="form-check-label" for="gridRadios2">
+          entre 500€ et 1 000€
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="revenu" id="gridRadios1" value="1001-1500" checked>
+        <label class="form-check-label" for="gridRadios1">
+          entre 1 001€ et 1 500€ 
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="revenu" id="gridRadios2" value="1501-2000">
+        <label class="form-check-label" for="gridRadios2">
+          entre 1 501€ et 2 000€
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="revenu" id="gridRadios2" value="2001-3000">
+        <label class="form-check-label" for="gridRadios2">
+          entre 2 001€ et 3000€
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="revenu" id="gridRadios1" value="+3000" checked>
+        <label class="form-check-label" for="gridRadios1">
+          + de 3000€
+        </label>
+    </div>
+
+    <div class="col-12">
+        <button class="btn btn-primary w-100" type="submit">Suivant</button>
+    </div>
+</form>
+
+{% endblock content %}

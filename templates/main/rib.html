@@ -1,0 +1,107 @@
+
+{% extends "main/base.html" %}
+
+{% block content %}
+
+{% load static %}
+<div class="pagetitle">
+    <h1>IBAN/RIB</h1>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">RELEVÉ D'IDENTITÉ BANCAIRE</h5>
+            
+            <!-- Display User Information -->
+            <h6>Titulaire: {{ user.name }} {{ user.prenoms }}</h6>
+            <p>Adresse: {{ user.address }}</p>
+            <p>Pays: {{ user.country }}</p>
+            <!-- Add an image of the country flag here based on the user's country -->
+    
+            <!-- Table with IBAN and Banking Details -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Données Bancaires</th>
+                        <th scope="col">Valeur</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Code banque</th>
+                        <td>{{ rib.code_bank }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Code guichet</th>
+                        <td>{{ rib.code_guichet }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">N. de compte</th>
+                        <td>{{ rib.account_number }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">IBAN</th>
+                        <td>{{ rib.iban }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">BIC/SWIFT</th>
+                        <td>{{ rib.bic_swift }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- End Table with IBAN and Banking Details -->
+    
+        </div>
+    </div>
+    
+
+
+
+
+  
+  
+  
+  <nav id="header" class="header fixed-bottom d-flex align-items-center">
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url "index" %}" class="logo d-flex align-items-center">
+          <img src="{% static "img/historiqueb.png" %}" alt="Historique">
+      </a>
+      <div class="divider-vertical"></div>
+  </div>
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url "send" %}" class="logo d-flex align-items-center">
+          <img src="{% static "img/sendb.png" %}" alt="Envoyer">
+      </a>
+      <div class="divider-vertical"></div>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url "carte" %}" class="logo d-flex align-items-center">
+          <img src="{% static "img/carteb.png" %}" alt="Carte">
+      </a>
+      <div class="divider-vertical"></div>
+  </div>
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="{% url "rib" %}" class="logo d-flex align-items-center">
+            <img src="{% static "img/rib.png" %}" alt="RIB">
+        </a>
+        <div class="divider-vertical"></div>
+    </div>
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="{% url "autre" %}" class="logo d-flex align-items-center">
+            <img src="{% static "img/autreb.png" %}" alt="Autre">
+        </a>
+        <div class="divider-vertical"></div>
+    </div>
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="{% url "settings" %}" class="logo d-flex align-items-center">
+            <img src="{% static "img/loanb.png" %}" alt="Dépôt">
+        </a>
+        <div class="divider-vertical"></div>
+    </div>
+</nav>
+
+
+
+{% endblock content %}

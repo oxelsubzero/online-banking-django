@@ -1,0 +1,68 @@
+
+{% extends "main/base.html" %}
+
+{% block content %}
+
+{% load static %}
+<div class="pagetitle">
+    <h1>Conseiller</h1>
+  </div><!-- End Page Title -->
+
+  <div class="col-lg-6">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Votre conseiller bancaire est Monsieur {{conseiller.nom}} </h5>
+            
+            <!-- Display User Information -->
+            <h6>Vous pouvez le contacter en cas de soucis</h6>
+            <p>Email: <a href="mailto:{{ conseiller.email }}"class="btn btn-primary">Contacter<a></p>
+            <p>Whatsapp: <a href='{{ conseiller.whatsapp }}' class="btn btn-primary" target="blank">Contatcer</a></p>
+            <!-- Add an image of the country flag here based on the user's country -->
+    
+            
+    </div>
+
+
+  <nav id="header" class="header fixed-bottom d-flex align-items-center">
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url "index" %}" class="logo d-flex align-items-center">
+          <img src="{% static "img/historiqueb.png" %}" alt="Historique">
+      </a>
+      <div class="divider-vertical"></div>
+  </div>
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url "send" %}" class="logo d-flex align-items-center">
+          <img src="{% static "img/sendb.png" %}" alt="Envoyer">
+      </a>
+      <div class="divider-vertical"></div>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url "carte" %}" class="logo d-flex align-items-center">
+          <img src="{% static "img/carteb.png" %}" alt="Carte">
+      </a>
+      <div class="divider-vertical"></div>
+  </div>
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="{% url "rib" %}" class="logo d-flex align-items-center">
+            <img src="{% static "img/ribb.png" %}" alt="RIB">
+        </a>
+        <div class="divider-vertical"></div>
+    </div>
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="{% url "autre" %}" class="logo d-flex align-items-center">
+            <img src="{% static "img/autre.png" %}" alt="Autre">
+        </a>
+        <div class="divider-vertical"></div>
+    </div>
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="{% url "settings" %}" class="logo d-flex align-items-center">
+            <img src="{% static "img/loanb.png" %}" alt="Dépôt">
+        </a>
+        <div class="divider-vertical"></div>
+    </div>
+</nav>
+
+
+
+{% endblock content %}

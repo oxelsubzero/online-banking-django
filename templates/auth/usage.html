@@ -1,0 +1,49 @@
+{% extends "auth/base_auth.html" %}
+{% block content %}
+<div class="pt-4 pb-2">
+    <h5 class="card-title text-center pb-0 fs-4">À quoi va servir votre comte</h5>
+  </div>
+
+  <form action="{% url 'usage' %}" method="post" class="row g-3 needs-validation" novalidate>
+    {% csrf_token %}
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck1">
+        <label class="form-check-label" for="gridCheck1">
+          Recevoir mes salires, retraite, CAF, etc...
+        </label>
+    </div>
+    <hr class="dropdown-divider">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck1">
+        <label class="form-check-label" for="gridCheck1">
+          Payer mes charges courantes : eau, électricité, gaz, téléphone, etc...
+        </label>
+    </div>
+    <hr class="dropdown-divider">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck1">
+        <label class="form-check-label" for="gridCheck1">
+          Effectuer des achats en ligne.
+        </label>
+    </div>
+    <hr class="dropdown-divider">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck1">
+        <label class="form-check-label" for="gridCheck1">
+          Payer à l'etranger.
+        </label>
+    </div>
+    <hr class="dropdown-divider">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck1">
+        <label class="form-check-label" for="gridCheck1">
+          Régler des dépenses saisonnières, vacances, gaz, téléphone, etc...
+        </label>
+    </div>
+
+    <div class="col-12">
+        <button class="btn btn-primary w-100" type="submit">Suivant</button>
+    </div>
+</form>
+
+{% endblock content %}

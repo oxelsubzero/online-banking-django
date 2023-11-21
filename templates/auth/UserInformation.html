@@ -1,0 +1,92 @@
+{% extends "auth/base_auth.html" %}
+{% block content %}
+<div class="pt-4 pb-2">
+    <h5 class="card-title text-center pb-0 fs-4">Information personnelles</h5>
+    <p class="text-center small">Entrez vos informations personnelles pour creer un compte</p>
+  </div>
+
+  <form action="{% url 'userInfo' %}" method="post" class="row g-3 needs-validation" novalidate>
+    {% csrf_token %}
+    <div class="col-12">
+      <label for="yourName" class="form-label">Votre nom</label>
+      <input type="text" name="name" class="form-control" id="yourName" required>
+      <div class="invalid-feedback">Veuillez entrer votre nom</div>
+    </div>
+
+    <div class="col-12">
+        <label for="yourPrenoms" class="form-label">Vos prénoms</label>
+        <input type="text" name="prenoms" class="form-control" id="yourPrenoms" required>
+        <div class="invalid-feedback">Veuillez entrer vos prénoms</div>
+    </div>
+
+
+    <div class="col-12">
+        <label for="yourAge" class="form-label">Votre âge</label>
+        <input type="number" name="age" class="form-control" id="yourAge" required>
+        <div class="invalid-feedback">Veuillez entrer votre âge</div>
+    </div>
+
+    <div class="col-12">
+        <label for="yourPhoneNumber" class="form-label">Numéro de téléphone</label>
+        <input type="tel" name="phone" class="form-control" id="yourPhoneNumber" required>
+        <div class="invalid-feedback">Veuillez entrer votre numéro de téléphone</div>
+    </div>
+
+    <div class="col-12">
+        <label for="yourCountry" class="form-label">Pays</label>
+        <select name="country" id="yourCountry" class="form-select" required>
+            <option value="" disabled selected>Sélectionnez un pays européen</option>
+            <option value="al">🇦🇱 Albanie</option>
+            <option value="de">🇩🇪 Allemagne</option>
+            <option value="ad">🇦🇩 Andorre</option>
+            <option value="at">🇦🇹 Autriche</option>
+            <option value="be">🇧🇪 Belgique</option>
+            <option value="by">🇧🇾 Biélorussie</option>
+            <option value="ba">🇧🇦 Bosnie-Herzégovine</option>
+            <option value="bg">🇧🇬 Bulgarie</option>
+            <option value="cy">🇨🇾 Chypre</option>
+            <option value="hr">🇭🇷 Croatie</option>
+            <option value="dk">🇩🇰 Danemark</option>
+            <option value="es">🇪🇸 Espagne</option>
+            <option value="ee">🇪🇪 Estonie</option>
+            <option value="fi">🇫🇮 Finlande</option>
+            <option value="fr">🇫🇷 France</option>
+            <option value="gr">🇬🇷 Grèce</option>
+            <option value="hu">🇭🇺 Hongrie</option>
+            <option value="ie">🇮🇪 Irlande</option>
+            <option value="is">🇮🇸 Islande</option>
+            <option value="it">🇮🇹 Italie</option>
+            <option value="xk">🇽🇰 Kosovo</option>
+            <option value="lv">🇱🇻 Lettonie</option>
+            <option value="li">🇱🇮 Liechtenstein</option>
+            <option value="lt">🇱🇹 Lituanie</option>
+            <option value="lu">🇱🇺 Luxembourg</option>
+            <option value="mk">🇲🇰 Macédoine du Nord</option>
+            <option value="mt">🇲🇹 Malte</option>
+            <option value="md">🇲🇩 Moldavie</option>
+            <option value="mc">🇲🇨 Monaco</option>
+            <option value="me">🇲🇪 Monténégro</option>
+            <option value="no">🇳🇴 Norvège</option>
+            <option value="nl">🇳🇱 Pays-Bas</option>
+            <option value="pl">🇵🇱 Pologne</option>
+            <option value="pt">🇵🇹 Portugal</option>
+            <option value="cz">🇨🇿 République tchèque</option>
+            <option value="ro">🇷🇴 Roumanie</option>
+            <option value="gb">🇬🇧 Royaume-Uni</option>
+            <option value="ru">🇷🇺 Russie (partie européenne)</option>
+            <option value="sm">🇸🇲 Saint-Marin</option>
+            <option value="rs">🇷🇸 Serbie</option>
+            <option value="sk">🇸🇰 Slovaquie</option>
+            <option value="si">🇸🇮 Slovénie</option>
+            <option value="se">🇸🇪 Suède</option>
+            <option value="ch">🇨🇭 Suisse</option>
+            <option value="ua">🇺🇦 Ukraine</option>
+            <!-- Continue adding more countries with flags here -->
+        </select>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-primary w-100" type="submit">Suivant</button>
+    </div>
+</form>
+
+{% endblock content %}

@@ -1,0 +1,30 @@
+{% extends "auth/base_auth.html" %}
+{% block content %}
+<div class="pt-4 pb-2">
+    <h5 class="card-title text-center pb-0 fs-4">Information Financière</h5>
+  </div>
+
+  <form action="{% url 'financial' %}" method="post" class="row g-3 needs-validation" novalidate>
+    {% csrf_token %}
+    <div class="col-12">
+        <label for="res" class="form-label"> Etes vous résident fiscal uniquement en France ?</label>
+        <select name="res" id="res" class="form-select" required>
+            <option value="yes">oui</option>
+            <option value="no">Non</option>
+        </select>
+    </div>
+
+    <div class="col-12">
+        <label for="prin" class="form-label"> Est-ce que CI BANK sera votre compte bancaire principal ?</label>
+        <select name="prin" id="prin" class="form-select" required>
+            <option value="principal">Principal</option>
+            <option value="secondaire">Secondaire</option>
+        </select>
+    </div>
+
+    <div class="col-12">
+        <button class="btn btn-primary w-100" type="submit">Suivant</button>
+    </div>
+</form>
+
+{% endblock content %}

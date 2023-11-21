@@ -1,0 +1,57 @@
+{% extends "auth/base_auth.html" %}
+{% block content %}
+<div class="pt-4 pb-2">
+    <h5 class="card-title text-center pb-0 fs-4">Catégories professionnelle</h5>
+  </div>
+
+  <form action="{% url 'profession' %}" method="post" class="row g-3 needs-validation" novalidate>
+    {% csrf_token %}
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="profession" id="gridRadios1" value="Cadres_dirigeants" checked>
+        <label class="form-check-label" for="gridRadios1">
+          Cadres et dirigeants
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="profession" id="gridRadios2" value="Entrepreneurs">
+        <label class="form-check-label" for="gridRadios2">
+          Entrepreneurs et PME
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="profession" id="gridRadios1" value="Ouvriers" checked>
+        <label class="form-check-label" for="gridRadios1">
+          Ouvriers
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="profession" id="gridRadios2" value="sans_emploi">
+        <label class="form-check-label" for="gridRadios2">
+          Personnes sans emploi et autres
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="profession" id="gridRadios2" value="fonction_publique">
+        <label class="form-check-label" for="gridRadios2">
+          Professions libérales et fonction publique
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="profession" id="gridRadios1" value="Retraités" checked>
+        <label class="form-check-label" for="gridRadios1">
+          Retraités hors du marché du travail
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="profession" id="gridRadios2" value="Salariés">
+        <label class="form-check-label" for="gridRadios2">
+          Salariés (non cadre)
+        </label>
+    </div>
+
+    <div class="col-12">
+        <button class="btn btn-primary w-100" type="submit">Suivant</button>
+    </div>
+</form>
+
+{% endblock content %}

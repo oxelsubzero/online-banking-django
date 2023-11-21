@@ -1,0 +1,31 @@
+{% extends "auth/base_auth.html" %}
+{% block content %}
+<div class="pt-4 pb-2">
+    <h5 class="card-title text-center pb-0 fs-4">Verification d'identité</h5>
+    <p class="text-center small">Cela ne prendra que quelques minutes :</p>
+  </div>
+
+  <form action="{% url 'verification' %}" method="post" class="row g-3 needs-validation" novalidate>
+    {% csrf_token %}
+    <div class="form-check">
+        <label class="form-check-label" for="gridRadios1">
+            Utilisez votre mobile ou webcam pour faire une photo :
+        </label>
+    </div>
+    <div class="form-check">
+        <label class="form-check-label" for="gridRadios1">
+            <li>De votre document d'identité en cours de validité</li>
+        </label> 
+    </div>
+    <div class="form-check">
+        <label class="form-check-label" for="gridRadios1">
+            <li>De votre visage</li>
+        </label> 
+    </div>
+
+    <div class="col-12">
+        <button class="btn btn-primary w-100" type="submit">Suivant</button>
+    </div>
+</form>
+
+{% endblock content %}

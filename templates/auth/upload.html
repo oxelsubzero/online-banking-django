@@ -1,0 +1,108 @@
+{% extends "auth/base_auth.html" %}
+{% block content %}
+<div class="pt-4 pb-2">
+    <h5 class="card-title text-center pb-0 fs-4">Sélectionnez un document</h5>
+    <p class="text-center small">passeport, carte nationale d'identité, permis de conduire :</p>
+  </div>
+
+  <form action="{% url 'upload' %}" method="post" class="row g-3 needs-validation" novalidate enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="document_type" id="id_card_checkbox" value="national_id_card">
+        <label class="form-check-label" for="id_card_checkbox">
+          Carte nationale d'identité
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="document_type" id="passport_checkbox" value="passport">
+        <label class="form-check-label" for="passport_checkbox">
+            Permis de conduire / passeport
+        </label>
+    </div>
+
+    <!-- Upload buttons for National ID Card -->
+    <div id="national_id_card_buttons" style="display: none;">
+        <label class="btn btn-primary btn-sm" title="Upload National ID Card Recto">
+            <i class="bi bi-upload"></i> Upload Recto
+            <input type="file" name="national_id_card_recto" accept="image/*" style="display: none;">
+        </label>
+    </div>
+    
+    <div id="passport_button" style="display: none;">
+        <label class="btn btn-primary btn-sm" title="Upload Passport">
+            <i class="bi bi-upload"></i> Upload Passport
+            <input type="file" name="passport" accept="image/*" style="display: none;">
+        </label>
+    </div>
+    
+    <div id="upload-success-message" style="display: none;" class="alert alert-success">
+        Fichier pris en compte !
+    </div>
+
+
+    <div class="col-12">
+        <button class="btn btn-primary w-100" type="submit">Suivant</button>
+    </div>
+</form>
+
+<script>
+    // Function to show/hide upload buttons based on radio button selection
+    function toggleUploadButtons() {
+        const idCardCheckbox = document.getElementById('id_card_checkbox');
+        const passportCheckbox = document.getElementById('passport_checkbox');
+        const nationalIdCardButtons = document.getElementById('national_id_card_buttons');
+        const passportButton = document.getElementById('passport_button');
+
+        idCardCheckbox.addEventListener('change', function () {
+            if (this.checked) {
+                nationalIdCardButtons.style.display = 'block';
+                passportButton.style.display = 'none';
+            } else {
+                nationalIdCardButtons.style.display = 'none';
+            }
+        });
+
+        passportCheckbox.addEventListener('change', function () {
+            if (this.checked) {
+                passportButton.style.display = 'block';
+                nationalIdCardButtons.style.display = 'none';
+            } else {
+                passportButton.style.display = 'none';
+            }
+        });
+
+        // Initially check the selected radio button and update the buttons accordingly
+        if (idCardCheckbox.checked) {
+            nationalIdCardButtons.style.display = 'block';
+            passportButton.style.display = 'none';
+        } else if (passportCheckbox.checked) {
+            passportButton.style.display = 'block';
+            nationalIdCardButtons.style.display = 'none';
+        }
+
+
+        // Function to show success message
+        function showSuccessMessage() {
+            const successMessage = document.getElementById('upload-success-message');
+            successMessage.style.display = 'block';
+
+            // Automatically hide the success message after a few seconds
+            setTimeout(function() {
+                successMessage.style.display = 'none';
+            }, 3000); // Adjust the time (in milliseconds) as needed
+        }
+
+        // Attach event listeners to the file inputs to show the success message
+        const rectoFileInput = document.querySelector('input[name="national_id_card_recto"]');
+        const passportFileInput = document.querySelector('input[name="passport"]');
+
+        rectoFileInput.addEventListener('change', showSuccessMessage);
+        passportFileInput.addEventListener('change', showSuccessMessage);
+    }
+
+    // Call the function to set the initial state
+    toggleUploadButtons();
+</script>
+
+
+{% endblock content %}

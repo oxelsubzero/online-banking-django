@@ -1,0 +1,97 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+{% load static %}
+
+<div class="pagetitle">
+    <h1>Verification</h1>
+</div><!-- End Page Title -->
+
+<div class="verification-code-container">
+    <p>Nous avons envoyé un code à 6 chiffres à votre addresse mail. (Si le code n'apparait pas dans la boite de reception Veuillez verifier dans les spam.) </p>
+    <form class="row g-3" style="margin-top:10px;" action="{% url 'verification_code' %}" method="post">
+        {% csrf_token %}
+        <!-- Add the verification code inputs with Bootstrap styling -->
+        <div class="col-12">
+            <label for="verificationCode" class="form-label">Code de vérification</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="digit1" name="digit1" maxlength="1" required>
+                <input type="text" class="form-control" id="digit2" name="digit2" maxlength="1" required>
+                <input type="text" class="form-control" id="digit3" name="digit3" maxlength="1" required>
+                <input type="text" class="form-control" id="digit4" name="digit4" maxlength="1" required>
+                <input type="text" class="form-control" id="digit5" name="digit5" maxlength="1" required>
+                <input type="text" class="form-control" id="digit6" name="digit6" maxlength="1" required>
+            </div>
+        </div>
+    
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Valider</button>
+        </div>
+    </form>
+    
+</div>
+
+
+<nav id="header" class="header fixed-bottom d-flex align-items-center">
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url "index" %}" class="logo d-flex align-items-center">
+          <img src="{% static "img/historiqueb.png" %}" alt="Historique">
+      </a>
+      <div class="divider-vertical"></div>
+  </div>
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url "send" %}" class="logo d-flex align-items-center">
+          <img src="{% static "img/send.png" %}" alt="Envoyer">
+      </a>
+      <div class="divider-vertical"></div>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url "carte" %}" class="logo d-flex align-items-center">
+          <img src="{% static "img/carteb.png" %}" alt="Carte">
+      </a>
+      <div class="divider-vertical"></div>
+  </div>
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="{% url "rib" %}" class="logo d-flex align-items-center">
+            <img src="{% static "img/ribb.png" %}" alt="RIB">
+        </a>
+        <div class="divider-vertical"></div>
+    </div>
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="{% url "autre" %}" class="logo d-flex align-items-center">
+            <img src="{% static "img/autreb.png" %}" alt="Autre">
+        </a>
+        <div class="divider-vertical"></div>
+    </div>
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="{% url "settings" %}" class="logo d-flex align-items-center">
+            <img src="{% static "img/loanb.png" %}" alt="Dépôt">
+        </a>
+        <div class="divider-vertical"></div>
+    </div>
+</nav>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Automatically focus on the next digit input when a digit is entered
+        $('input[id^="digit"]').on('input', function () {
+            var currentDigitInput = $(this);
+            var maxLength = currentDigitInput.attr('maxlength');
+            
+            // Move to the next digit input if the current input is filled
+            if (currentDigitInput.val().length === maxLength) {
+                var nextDigitInput = currentDigitInput.next('input[id^="digit"]');
+                
+                // If the next digit input exists, focus on it
+                if (nextDigitInput.length) {
+                    nextDigitInput.focus();
+                }
+            }
+        });
+    });
+</script>
+
+
+{% endblock content %}

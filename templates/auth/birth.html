@@ -1,0 +1,33 @@
+{% extends "auth/base_auth.html" %}
+{% block content %}
+<div class="pt-4 pb-2">
+    <h5 class="card-title text-center pb-0 fs-4">Date et lieu de naissance</h5>
+    <p class="text-center small">Veuillez entrer les informations qui figurent sur votre pièce d'identité</p>
+</div>
+
+<form action="{% url 'birth' %}" method="post" class="row g-3 needs-validation" novalidate>
+    {% csrf_token %}
+    
+    <div class="col-12">
+        <label for="yourBirthDate" class="form-label">Date de naissance</label>
+        <input type="date" name="birth_date" class="form-control" id="yourBirthDate" required>
+        <div class="invalid-feedback">Veuillez entrer votre date de naissance</div>
+    </div>
+    
+    <div class="col-12">
+        <label for="yourCountryOfBirth" class="form-label">Pays de naissance</label>
+        <input type="text" name="country_of_birth" class="form-control" id="yourCountryOfBirth" required>
+        <div class="invalid-feedback">Veuillez entrer votre pays de naissance</div>
+    </div>
+    
+    <div class="col-12">
+        <label for="yourPlaceOfBirth" class="form-label">Lieu de naissance</label>
+        <input type="text" name="place_of_birth" class="form-control" id="yourPlaceOfBirth" required>
+        <div class="invalid-feedback">Veuillez entrer votre lieu de naissance</div>
+    </div>
+
+    <div class="col-12">
+        <button class="btn btn-primary w-100" type="submit">Suivant</button>
+    </div>
+</form>
+{% endblock content %}

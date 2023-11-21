@@ -1,0 +1,23 @@
+{% extends "auth/base_auth.html" %}
+
+{% block content %}
+
+    <div class="pt-4 pb-2">
+        <h5 class="card-title text-center pb-0 fs-4">Entrez votre adresse email : </h5>
+        <p class="text-center small">L’adresse email permettra de bénéficier à 100% de l’ensemble de nos services</p>
+    </div>
+
+    <form action="{% url 'mail' %}" method="post" class="row g-3 needs-validation" novalidate action=>
+        {% csrf_token %}
+        <div class="col-12">
+            <label for="yourEmail" class="form-label">Votre Email</label>
+            <input type="email" name="email" class="form-control" id="yourEmail" required>
+            <div class="invalid-feedback">Veuillez entrer une adresse valide</div>
+        </div>
+
+        <div class="col-12">
+            <button class="btn btn-primary w-100" type="submit">Démarrer</button>
+        </div>
+    </form>
+
+{% endblock content %}

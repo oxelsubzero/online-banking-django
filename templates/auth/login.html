@@ -1,0 +1,52 @@
+{% extends "auth/base_auth.html" %}
+
+{% block content %}
+
+<div class="pt-4 pb-2">
+    <h5 class="card-title text-center pb-0 fs-4">Connectez-vous à votre espace client</h5>
+    <p class="text-center small">Utilisez votre email et mot de passe</p>
+  </div>
+
+  <form class="row g-3 needs-validation" novalidate method="post" action="login">
+    {% csrf_token %}
+
+    {% if messages %}
+    <div class="alert alert-danger" role="alert">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+
+    <div class="col-12">
+      <label for="youremail" class="form-label">email</label>
+      <div class="input-group has-validation">
+        <span class="input-group-text" id="inputGroupPrepend">@</span>
+        <input type="email" name="email" class="form-control" id="youremail" required>
+        <div class="invalid-feedback">Veuillez entrez un mail valide</div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <label for="yourPassword" class="form-label">Mot de passe</label>
+      <input type="password" name="password" class="form-control" id="yourPassword" required>
+    </div>
+
+    <div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
+        <label class="form-check-label" for="rememberMe">Rester connecté</label>
+      </div>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary w-100" type="submit">Connexion</button>
+    </div>
+    <div class="col-12">
+      <p class="small mb-0">Pas encore client ? <a href="{% url "mail" %}">Crer un compte</a></p>
+      <p class="small mb-0">Mot de passe oublié ? <a href="{% url "changepassword2" %}">Réinitialiser</a></p>
+    </div>
+  </form>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends "auth/base_auth.html" %}
+{% block content %}
+<div class="pt-4 pb-2">
+    <h5 class="card-title text-center pb-0 fs-4">Information personnelles</h5>
+    <p class="text-center small">Entrez vos informations personnelles pour creer un compte</p>
+  </div>
+
+  <form action="{% url 'adresse' %}" method="post" class="row g-3 needs-validation" novalidate>
+    {% csrf_token %}
+    <div class="col-12">
+        <label for="yourCountry" class="form-label">Logement</label>
+        <select name="logement" id="yourCountry" class="form-select" required>
+            <option value="" disabled selected>Quelle est votre situation de Logement</option>
+            <option value="al">Locataire</option>
+            <option value="de">Propriétaire</option>
+            <option value="ad">Hébergé</option>
+        </select>
+    </div>
+
+    
+    <div class="col-12">
+        <label for="yourAddress" class="form-label">Votre adresse de résidence</label>
+        <input type="text" name="address" class="form-control" id="yourAddress" required>
+        <div class="invalid-feedback">Veuillez entrer votre adresse</div>
+    </div>
+
+    <div class="col-12">
+        <button class="btn btn-primary w-100" type="submit">Suivant</button>
+    </div>
+</form>
+
+{% endblock content %}

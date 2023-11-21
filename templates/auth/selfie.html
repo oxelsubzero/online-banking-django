@@ -1,0 +1,58 @@
+{% extends "auth/base_auth.html" %}
+{% block content %}
+<div class="pt-4 pb-2">
+    <h5 class="card-title text-center pb-0 fs-4">Sélectionnez une photo</h5>
+    <p class="text-center small">Veuillez selectionner une photo claire de votre visage pour la verification.</p>
+  </div>
+
+  <form action="{% url 'selfie' %}" method="post" class="row g-3 needs-validation" novalidate enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-check">
+        <label class="form-check-label">
+          
+        </label>
+    </div>
+    <div id="passport_button">
+        <label class="btn btn-primary btn-sm" title="Upload Passport">
+            <i class="bi bi-upload"></i> Choisir une photo
+            <input type="file" name="passport" accept="image/*" style="display: none;">
+        </label>
+    </div>
+    
+    <div id="upload-success-message" style="display: none;" class="alert alert-success">
+        Fichier pris en compte !
+    </div>
+
+
+    <div class="col-12">
+        <button class="btn btn-primary w-100" type="submit">Suivant</button>
+    </div>
+</form>
+
+<script>
+// Function to show/hide upload buttons based on radio button selection
+function toggleUploadButtons() {
+    const passportButton = document.getElementById('passport_button');
+    // Function to show success message
+    function showSuccessMessage() {
+        const successMessage = document.getElementById('upload-success-message');
+        successMessage.style.display = 'block';
+
+        // Automatically hide the success message after a few seconds
+        setTimeout(function () {
+            successMessage.style.display = 'none';
+        }, 3000); // Adjust the time (in milliseconds) as needed
+    }
+
+    // Attach event listeners to the file inputs to show the success message
+    const passportFileInput = document.querySelector('input[name="passport"]');
+    passportFileInput.addEventListener('change', showSuccessMessage);
+}
+
+// Call the function to set the initial state
+toggleUploadButtons();
+
+</script>
+
+
+{% endblock content %}

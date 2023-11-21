@@ -1,0 +1,26 @@
+{% extends "auth/base_auth.html" %}
+{% block content %}
+<div class="pt-4 pb-2">
+    <h5 class="card-title text-center pb-0 fs-4">Finalisation</h5>
+    <p class="text-center small">Nous avons bien recu vos document, Votre compte sera activé, d'ici 24h</p>
+</div>
+
+<form  method="post" action="{% url "logout" %}" class="row g-3 needs-validation" novalidate>
+    {% csrf_token %}
+    <div class="col-12">
+        <label for="yourBirthDate" class="form-label">Nous vous enverrons un mail dès que le compte sera activé</label>
+    </div>
+    
+    <div class="col-12">
+        <label for="yourCountryOfBirth" class="form-label">Penser à verifier vos mail (et vos spam pour etre sur de ne pas rater le mail)</label>
+    </div>
+    
+    <div class="col-12">
+        <label for="yourPlaceOfBirth" class="form-label">Vous pouvez aussi contacter votre conseiller.</label>
+    </div>
+
+    <div class="col-12">
+        <button class="btn btn-primary w-100" type="submit">Deconnexion</button>
+    </div>
+</form>
+{% endblock content %}

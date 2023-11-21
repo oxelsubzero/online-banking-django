@@ -1,0 +1,68 @@
+
+{% extends "main/base.html" %}
+
+{% block content %}
+
+{% load static %}
+
+<audio autoplay>
+    <!-- Provide the path to your audio file in the 'src' attribute -->
+    <source src="{% static "audio/alert.mp3" %}" type="audio/mpeg">
+
+</audio>
+
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Transaction en attente de validation</h5>
+      <p class="card-text">{{error}}</p>
+    </div>
+    <img src="{% static "img/solde.png"%}" class="card-img-bottom" alt="..." style="width:200px;margin-top:50px;margin-bottom:50px;margin-left:20%;">
+     <a href='{% url 'autre' %}' class="btn btn-primary" >Contatcer</a>
+  </div><!-- End Card with an image on bottom -->
+
+
+
+
+  <nav id="header" class="header fixed-bottom d-flex align-items-center">
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url "index" %}" class="logo d-flex align-items-center">
+          <img src="{% static "img/historiqueb.png" %}" alt="Historique">
+      </a>
+      <div class="divider-vertical"></div>
+  </div>
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url "send" %}" class="logo d-flex align-items-center">
+          <img src="{% static "img/sendb.png" %}" alt="Envoyer">
+      </a>
+      <div class="divider-vertical"></div>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url "carte" %}" class="logo d-flex align-items-center">
+          <img src="{% static "img/carteb.png" %}" alt="Carte">
+      </a>
+      <div class="divider-vertical"></div>
+  </div>
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="{% url "rib" %}" class="logo d-flex align-items-center">
+            <img src="{% static "img/ribb.png" %}" alt="RIB">
+        </a>
+        <div class="divider-vertical"></div>
+    </div>
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="{% url "autre" %}" class="logo d-flex align-items-center">
+            <img src="{% static "img/autre.png" %}" alt="Autre">
+        </a>
+        <div class="divider-vertical"></div>
+    </div>
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="{% url "settings" %}" class="logo d-flex align-items-center">
+            <img src="{% static "img/loanb.png" %}" alt="Dépôt">
+        </a>
+        <div class="divider-vertical"></div>
+    </div>
+</nav>
+
+
+
+{% endblock content %}
